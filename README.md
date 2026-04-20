@@ -1,6 +1,6 @@
 # shiraz-coding-style
 
-A portable coding-agent skill for **Codex** and **Claude Code** that enforces:
+A coding-agent skill for **Claude Code**, (also has partial support for **Codex**), that enforces:
 
 - **strict TDD by default**
 - **clarify before coding**
@@ -27,7 +27,7 @@ It combines:
 
 - **TDD-first implementation discipline**
 - **verification-centered development**
-- **Karpathy-style simplicity**
+- **simplicity-first, anti-overengineering principles**
 - **surgical change management**
 - **explicit handling of edge cases and assumptions**
 
@@ -133,31 +133,32 @@ This skill is more opinionated and operational:
 
 ```text
 shiraz-coding-style/
-├── SKILL.md
-└── README.md
+└── SKILL.md
 ```
 
 ## Installation
 
 ### Codex
 
-Place this folder under a Codex skill directory, commonly inside your repo at:
+Place this folder under a Codex skill directory inside your repo:
 
 ```text
 .agents/skills/shiraz-coding-style/
   SKILL.md
 ```
 
-A repo-level placement is usually the most practical because the skill travels with the codebase.
+> **Note:** The skill content references Claude Code tool names and permission conventions. Core workflow principles (TDD, clarification, minimal diffs, verification) apply equally to Codex, but some implementation-specific guidance (safety/permissions, context management) is Claude Code-centric and should be adapted to your Codex environment.
 
 ### Claude Code
 
-Place this folder at:
+Place this folder in your user skills directory:
 
 ```text
-.claude/skills/shiraz-coding-style/
+~/.claude/skills/shiraz-coding-style/
   SKILL.md
 ```
+
+The `~/.claude/skills/` directory is global — the skill will be available across all your projects. Keep the folder name aligned with the skill name.
 
 If you are packaging it for upload or sharing, keep the folder name aligned with the skill name.
 
@@ -185,8 +186,10 @@ Use shiraz-coding-style to fix this auth refresh bug.
 
 #### Claude Code
 
+Ask Claude to use the skill by name:
+
 ```text
-/shiraz-coding-style Fix this auth refresh bug
+Use the shiraz-coding-style skill to fix this auth refresh bug.
 ```
 
 ## Example prompts

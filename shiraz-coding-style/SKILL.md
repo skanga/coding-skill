@@ -1,5 +1,6 @@
 ---
 name: shiraz-coding-style
+version: 1.0
 description: Use for software implementation, bug fixes, features, refactors, and reviews that should follow strict TDD, minimal diffs, strong verification, and simplicity-first engineering.
 ---
 
@@ -49,42 +50,46 @@ For implementation tasks, this skill is the default operating model.
 
 For implementation tasks, follow this order:
 
-1. Clarify behavior and success criteria.
-2. Enumerate important edge cases and assumptions.
-3. Resolve ambiguities from the repo and existing behavior.
-4. Ask only blocking clarifying questions if needed.
-5. Write RED tests first.
-6. Run the tests and confirm they fail for the correct reason.
-7. Implement the minimal code needed to make them pass.
-8. Run the relevant checks until GREEN.
-9. Refactor only while staying GREEN.
-10. Review the final diff for regressions, missing cases, security risks, and unnecessary complexity.
+1. Clarify **Goal** (what should change) and **Context** (relevant files, logs, issue IDs, reproduction steps, architectural boundaries).
+2. Define **Done when** (exact observable completion criteria) and **Verification** approach (commands, tests, screenshots, or benchmarks that will prove correctness).
+3. State **Constraints** — compatibility requirements, public API constraints, security requirements, performance limits, style rules, and areas that must not be touched.
+4. Enumerate important edge cases and assumptions.
+5. Resolve ambiguities from the repo and existing behavior.
+6. Ask only blocking clarifying questions if needed.
+7. Write RED tests first.
+8. Run the tests and confirm they fail for the correct reason.
+9. Implement the minimal code needed to make them pass.
+10. Run the relevant checks until GREEN.
+11. Refactor only while staying GREEN.
+12. Review the final diff for regressions, missing cases, security risks, and unnecessary complexity.
+
+If the user prompt does not provide all of steps 1–3, infer as much as possible from the repo before proceeding.
 
 **Do not write implementation code before RED tests unless the task is explicitly exploratory or non-behavioral.**
 
-## Task contract
+### When no test framework is available
 
-Before implementing, make the task concrete using this contract:
+Some tasks have no applicable test framework: infrastructure-as-code (Terraform, Kubernetes manifests), database migrations, shell scripts, CI config, or purely config-driven changes.
 
-### Goal
-What should change?
+In these cases, define a RED equivalent before making changes:
 
-### Context
-Relevant files, logs, screenshots, issue IDs, reproduction steps, examples, links, and architectural boundaries.
+- **Reproduce first:** document the current (broken or absent) behavior with a manual step, a dry-run command, or a before-state snapshot.
+- **State the verification baseline explicitly:** what command, output, or observable state will prove the change is correct?
+- **Run a dry run or diff before applying:** `terraform plan`, `--dry-run`, `diff`, or equivalent.
+- **Verify the after state matches the expected baseline** before declaring completion.
 
-### Constraints
-Compatibility requirements, public API constraints, security requirements, performance limits, style rules, and areas that must not be touched.
+Treat the before/after verification pair as your RED/GREEN. Document both in the output report.
 
-### Done when
-Exact observable completion criteria.
+## Output format
 
-### Verification
-Commands, tests, screenshots, manual checks, or benchmarks that will prove correctness.
+Unless the user asks otherwise, end implementation work with a concise report containing:
 
-### Output
-What the final report should include, such as root cause, files changed, tests added, commands run, assumptions, and residual risks.
-
-If the user prompt does not provide all of this, infer as much as possible from the repo before proceeding.
+1. what changed
+2. tests or checks added
+3. commands run
+4. assumptions made
+5. what remains unverified
+6. residual risks or sensible follow-up work
 
 ## Clarification protocol
 
@@ -203,7 +208,7 @@ Sequence: **RED → GREEN → REFACTOR**
 
 ### Refactor
 
-Use characterization-first TDD.
+Use characterization-first TDD: add tests that pin the current observable behavior before touching any code, so the suite acts as a safety net during restructuring.
 
 1. Identify the current observable behavior.
 2. Add tests that lock that behavior down.
@@ -333,14 +338,3 @@ Hard constraints:
 - **Loops on the same failure:** stop, summarize, clear context, and restart sharply.
 - **Writes shallow tests:** strengthen acceptance criteria and edge cases.
 - **Overengineers:** simplify aggressively and remove speculative flexibility.
-
-## Output format
-
-Unless the user asks otherwise, end implementation work with a concise report containing:
-
-1. what changed
-2. tests or checks added
-3. commands run
-4. assumptions made
-5. what remains unverified
-6. residual risks or sensible follow-up work
