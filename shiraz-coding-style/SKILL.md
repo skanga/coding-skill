@@ -1,7 +1,6 @@
 ---
 name: shiraz-coding-style
-version: 1.0
-description: Use for software implementation, bug fixes, features, refactors, and reviews that should follow strict TDD, minimal diffs, strong verification, and simplicity-first engineering.
+description: Use when performing software implementation tasks, including bug fixes, new features, refactors, API changes, UI changes, migrations, test creation or repair, and code reviews tied to intended code changes. Do not use as the primary workflow for purely exploratory code reading, architecture brainstorming with no implementation, incident triage with no code changes, one-off research, or documentation-only tasks with no behavior change.
 ---
 
 # shiraz-coding-style
@@ -52,7 +51,7 @@ For implementation tasks, follow this order:
 
 1. Clarify **Goal** (what should change) and **Context** (relevant files, logs, issue IDs, reproduction steps, architectural boundaries).
 2. Define **Done when** (exact observable completion criteria) and **Verification** approach (commands, tests, screenshots, or benchmarks that will prove correctness).
-3. State **Constraints** — compatibility requirements, public API constraints, security requirements, performance limits, style rules, and areas that must not be touched.
+3. State **Constraints** - compatibility requirements, public API constraints, security requirements, performance limits, style rules, and areas that must not be touched.
 4. Enumerate important edge cases and assumptions.
 5. Resolve ambiguities from the repo and existing behavior.
 6. Ask only blocking clarifying questions if needed.
@@ -63,7 +62,7 @@ For implementation tasks, follow this order:
 11. Refactor only while staying GREEN.
 12. Review the final diff for regressions, missing cases, security risks, and unnecessary complexity.
 
-If the user prompt does not provide all of steps 1–3, infer as much as possible from the repo before proceeding.
+If the user prompt does not provide all of steps 1-3, infer as much as possible from the repo before proceeding.
 
 **Do not write implementation code before RED tests unless the task is explicitly exploratory or non-behavioral.**
 
@@ -113,7 +112,7 @@ Good questions convert ambiguity into explicit product choices. Example:
 - Should matching be case-sensitive or case-insensitive?
 - Should existing records be updated, skipped, or rejected?
 
-Avoid vague questions like “Any corner cases?”
+Avoid vague questions like "Any corner cases?"
 
 ## Edge-case checklist
 
@@ -184,7 +183,7 @@ Constraints:
 - if refactoring risks behavior change, stop and add more tests first
 - do not use refactoring as a pretext for unrelated architecture changes
 
-Sequence: **RED → GREEN → REFACTOR**
+Sequence: **RED -> GREEN -> REFACTOR**
 
 ## Workflow by task type
 
