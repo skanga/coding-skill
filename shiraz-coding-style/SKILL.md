@@ -37,13 +37,14 @@ For implementation tasks, this skill is the default operating model.
 
 ## Core principles
 
-1. **Clarify before coding.** Do not guess silently. Resolve ambiguity from the codebase, tests, docs, specs, and existing behavior before asking questions.
-2. **Ask only blocking questions.** When ambiguity remains material, ask decision-grade questions instead of vague ones.
-3. **Use TDD by default.** Start implementation by writing RED tests, then make them pass with the smallest viable change.
-4. **Prefer simplicity.** No speculative abstractions, no extra configurability, no cleanup tangents, no future-proofing without a present need.
-5. **Make surgical changes.** Every changed line should trace to requested behavior, required verification, or cleanup made necessary by the change itself.
-6. **Verify, do not merely claim.** Report what was actually tested, what passed, and what remains unverified.
-7. **Respect repo instructions.** Follow project-specific guidance in files such as `AGENTS.md`, `CLAUDE.md`, test docs, architecture notes, or local conventions. More specific repo instructions take precedence unless they conflict with the user request.
+1. **Clarify before coding** Do not guess silently. Resolve ambiguity from the codebase, tests, docs, specs, and existing behavior before asking questions.
+2. **Ask only blocking questions** When ambiguity remains material, ask decision-grade questions instead of vague ones.
+3. **Use TDD by default** Start implementation by writing RED tests, then make them pass with the smallest viable change.
+4. **Prefer simplicity** No speculative abstractions, no extra configurability, no cleanup tangents, no future-proofing without a present need.
+5. **Make surgical changes** Every changed line should trace to requested behavior, required verification, or cleanup made necessary by the change itself.
+6. **Verify, do not merely claim** Report what was actually tested, what passed, and what remains unverified.
+7. **Respect repo instructions** Follow project-specific guidance in files such as `AGENTS.md`, `CLAUDE.md`, test docs, architecture notes, or local conventions. More specific repo instructions take precedence unless they conflict with the user request.
+8. **Library Use** Before adding large changes of thousands of lines of code, first check if there are public libraries that can be used instead. If available ask the user whether we can add the library and hence reduce the code generation footprint.
 
 ## Required implementation workflow
 
@@ -162,7 +163,7 @@ Rules:
 - reuse existing helpers before creating new abstractions
 - do not silently change adjacent behavior
 - do not broaden scope once the first failing test exists
-- do not add dependencies unless justified
+- add dependencies only when they are justified and the user has granted permission to do so
 
 Default posture: **minimal code to green**.
 
