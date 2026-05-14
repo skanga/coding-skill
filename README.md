@@ -138,29 +138,23 @@ shiraz-coding-style/
 
 ## Installation
 
+You can use wget to download the skill file directly into codex or claude-code:
+
 ### Codex
 
-Place this folder under a Codex skill directory inside your repo:
-
 ```text
-.agents/skills/shiraz-coding-style/
-  SKILL.md
+wget -P ~/.agents/skills/shiraz-coding-style/ https://raw.githubusercontent.com/skanga/coding-skill/refs/heads/main/shiraz-coding-style/SKILL.md
 ```
 
 > **Note:** The skill content references Claude Code tool names and permission conventions. Core workflow principles (TDD, clarification, minimal diffs, verification) apply equally to Codex, but some implementation-specific guidance (safety/permissions, context management) is Claude Code-centric and should be adapted to your Codex environment.
 
 ### Claude Code
 
-Place this folder in your user skills directory:
-
 ```text
-~/.claude/skills/shiraz-coding-style/
-  SKILL.md
+wget -P ~/.claude/skills/shiraz-coding-style/ https://raw.githubusercontent.com/skanga/coding-skill/refs/heads/main/shiraz-coding-style/SKILL.md
 ```
 
 The `~/.claude/skills/` directory is global — the skill will be available across all your projects. Keep the folder name aligned with the skill name.
-
-If you are packaging it for upload or sharing, keep the folder name aligned with the skill name.
 
 ## How to use it
 
